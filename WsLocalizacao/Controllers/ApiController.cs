@@ -1,3 +1,4 @@
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using WsLocalizacao.Models.DTO;
 
@@ -16,7 +17,7 @@ public class ApiController : Controller
 
         _kmlService = new KmlService(kmlPath);
     }
-    
+
     [HttpPost("export")]
     public IActionResult ExportPlacemarks([FromBody] Placemark filter)
     {
@@ -27,14 +28,21 @@ public class ApiController : Controller
         {
             return BadRequest(ModelState);
         }
-        
+
         if (!filteredPlacemarks.Any())
         {
             return BadRequest("Nenhum placemark encontrado com os filtros fornecidos.");
         }
 
-        var exportPath = _kmlService.ExportToKml(filteredPlacemarks);
-        return Ok(new { message = "Arquivo exportado com sucesso!", path = exportPath });
+        var kmlContent = _kmlService.ExportToKml(filteredPlacemarks);
+        var byteArray = Encoding.UTF8.GetBytes(kmlContent);
+        var fileContent = new MemoryStream(byteArray);
+
+        if (fileContent != null)
+            return File(fileContent, "application/vnd.google-earth.kml+xml", "ExportedPlacemarks.kml");
+        else
+            return BadRequest(new { message = "Erro ao exportar a placemarks." });
+        //return Ok(new { message = "Arquivo exportado com sucesso!", path = exportPath });
     }
 
     [HttpGet("")]

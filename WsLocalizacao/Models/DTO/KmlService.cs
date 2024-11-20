@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace WsLocalizacao.Models.DTO;
 
@@ -88,9 +89,8 @@ public class KmlService
         string projectPath = Directory.GetCurrentDirectory();
         var exportPath = Path.Combine(projectPath, "Models/DataBase/ExportedPlacemarks.kml");
         
-        // var exportPath = Path.Combine(Directory.GetCurrentDirectory(), "ExportedPlacemarks.kml");
         kml.Save(exportPath);
-        return exportPath;
+        return kml.ToString();
     }
 }
 
