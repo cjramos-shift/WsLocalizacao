@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<kml>
+  <Document>
+    <Placemark>
+      <name>GRADE</name>
+      <description>Situacao: , Bairro: 13 DE JULHO</description>
+      <ExtendedData>
+        <Data name="CLIENTE">
+          <value>GRADE</value>
+        </Data>
+        <Data name="SITUAÇÃO">
+          <value></value>
+        </Data>
+        <Data name="BAIRRO">
+          <value>13 DE JULHO</value>
+        </Data>
+        <Data name="REFERENCIA">
+          <value>SEMAFORO DO CANAL ACRISIO AZEVEDO</value>
+        </Data>
+        <Data name="RUA/CRUZAMENTO">
+          <value>AV. BEIRA MAR X AV. ANÍSIO AZEVEDO</value>
+        </Data>
+      </ExtendedData>
+    </Placemark>
+  </Document>
+</kml>
